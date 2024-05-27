@@ -1,0 +1,97 @@
+{% extends "nav.html" %}
+
+{% block title %}
+Aispacex Login
+{% endblock title %}
+{% block style %}
+ <style>
+
+
+.btn{
+font-family: "Raleway", sans-serif;
+font-weight: 500;
+font-size: 16px;
+letter-spacing: 1px;
+display: inline-block;
+padding: 10px 30px;
+border-radius: 50px;
+transition: 0.5s;
+color: #3498db;
+border: 2px solid #3498db;
+}
+
+.btn:hover{
+    background-color:#3498db;
+    color:White;
+}
+    
+ </style>
+
+
+
+{% endblock style %}
+
+{% block body %}
+<div class="container mt-5">
+    <br>
+    <br>
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Login</h1>
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            {% comment %} <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button> {% endcomment %}
+                        </div>
+                    {% endfor %}
+                    <form action="/arkauth/login/" method="post" >
+                        {% csrf_token %}
+                        {% comment %} <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" class="form-control" id="fname" name="fname"  required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-control" id="lname" name="lname"  required>
+                        </div> {% endcomment %}
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"  required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass1">Password</label>
+                            <input type="password" class="form-control" id="pass1" name="pass1"  required>
+                        </div>
+                        {% comment %} <div class="form-group">
+                            <label for="pass2">Confirm Password</label>
+                            <input type="password" class="form-control" id="pass2" name="pass2"  required>
+                        </div> {% endcomment %}
+                        <br>
+                        <div class="d-flex justify-content-center">
+                           
+
+
+                            <button type="submit" class="btn">Login</button>
+                        </div>
+                    </form>
+                    <div class="form-footer mt-4 text-center">
+                        <p> Not Already a User? <a href="/arkauth/signup/">signup</a></p>
+                        <p> Forgot Password <a href="/arkauth/request-reset-email/">Reset</a></p>
+
+                        <p><a href="/">Home</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
